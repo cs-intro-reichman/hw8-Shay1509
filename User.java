@@ -71,24 +71,19 @@
     public boolean removeFollowee(String name) {
         int i = 0;
         boolean found = false;
-        while(i < fCount) {
-            if(!follows[i].equals(name)){
-                found = true;
-                break;
-            }
+        while(i < fCount && !follows[i].equals(name)) {
             i++;
         }
-        if(!found){
+        if(i == fCount){
             return false;
         }
-        else{
-            while(i < fCount - 1){
-                follows[i] = follows[i + 1];
-                i++;
-            }
-            follows[i] = null;
-            fCount--;
+        
+        while(i < fCount - 1){
+            follows[i] = follows[i + 1];
+            i++;
         }
+        follows[i] = null;
+        fCount--;
         return true;
     }
 
@@ -110,9 +105,9 @@
      *  (if two users follow each other, they are said to be "friends.") */
     public boolean isFriendOf(User other) {
         for(int i = 0; i < this.fCount; i++){
-            if(this.follows[i].equals(other.name)){
+            if(this.follows[i].equals(other.getName())){
                 for(int j = 0; j < other.fCount; j++){
-                    if(other.follows[j].equals(this.name)){
+                    if(other.follows[j].equals(this.getName())){
                         return true;
                     }
                 }
