@@ -70,13 +70,15 @@
      *  If the name is not in the list, does nothing and returns false. */
     public boolean removeFollowee(String name) {
         int i = 0;
+        boolean found = false;
         while(i < fCount) {
             if(!follows[i].equals(name)){
+                found = true;
                 break;
             }
             i++;
         }
-        if(i == fCount){
+        if(!found){
             return false;
         }
         else{
